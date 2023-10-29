@@ -1,43 +1,37 @@
 #include <iostream>
- #include <vector>
- #include <unordered_map>
+#include <vector>
+#include <unordered_map>
+
 using namespace std;
 
 vector<int> PairingSum(vector<int>& nums, int target) {
-        vector<int> result;
-        unordered_map<int, int> dict;
-        
-        for (int i = 0; i < nums.size(); i++) {
-            int v = target - nums[i];
-            if (dict.count(v) > 0) {
-                result.push_back(dict[v]);
-                result.push_back(i);
-                break;
-            }
-            dict[nums[i]] = i;
+    vector<int> result;
+    unordered_map<int, int> dict;
+
+    for (int i = 0; i < nums.size(); i++) {
+        int v = target - nums[i];
+        if (dict.count(v) > 0) {
+            result.push_back(dict[v]);
+            result.push_back(i);
+            break;
         }
-        
-        return result;
+        dict[nums[i]] = i;
     }
 
-#include <iostream>
- #include <vector>
- #include <unordered_map>
-using namespace std;
+    return result;
+}
 
-vector<int> PairingSum(vector<int>& nums, int target) {
-        vector<int> result;
-        unordered_map<int, int> dict;
-        
-        for (int i = 0; i < nums.size(); i++) {
-            int v = target - nums[i];
-            if (dict.count(v) > 0) {
-                result.push_back(dict[v]);
-                result.push_back(i);
-                break;
-            }
-            dict[nums[i]] = i;
-        }
-        
-        return result;
+int main() {
+    vector<int> nums = {2, 7, 11, 15};
+    int target = 9;
+
+    vector<int> result = PairingSum(nums, target);
+
+    if (result.size() == 2) {
+        cout << "Output: [" << result[0] << ", " << result[1] << "]" << endl;
+    } else {
+        cout << "No valid solution found." << endl;
     }
+
+    return 0;
+}
